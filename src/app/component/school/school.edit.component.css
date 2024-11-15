@@ -1,0 +1,51 @@
+/* Tùy chỉnh ng-select */
+ng-select {
+    font-family: Arial, sans-serif; /* Chọn font đẹp */
+    border-radius: 5px;
+    border: 1px solid #afb2b8; /* Viền mỏng màu xám */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow nhẹ */
+    transition: all 0.3s ease-in-out; /* Hiệu ứng chuyển động */
+  }
+  
+  ng-select:hover {
+    border-color: #007bff; /* Đổi màu border khi hover */
+  }
+  
+  ::ng-deep ng-select .ng-select-container {
+    padding: 5px 10px; /* Thêm padding cho vùng chọn */
+  }
+  
+  ::ng-deep ng-select .ng-select-container .ng-value {
+    font-size: 14px; /* Điều chỉnh font size cho giá trị đã chọn */
+  }
+  ::ng-deep ng-select .ng-dropdown-panel {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);/* Thêm bóng cho dropdown */
+    background-color: #ffffff;
+    color: #495057; 
+  }
+  
+  ::ng-deep ng-select .ng-option {
+    padding: 5px; /* Padding cho mỗi option */
+    font-size: 14px; /* Điều chỉnh font size cho các options */
+    color: #333; /* Màu chữ */
+  }
+  
+  ::ng-deep ng-select .ng-option:hover {
+    background-color: #f1f1f1; /* Chỉnh màu nền khi hover */
+    cursor: pointer;
+  }
+  
+  ::ng-deep ng-select .ng-select-clear {
+    color: #007bff; /* Màu chữ khi clear */
+  }
+  
+  ::ng-deep ng-select .ng-select-clear:hover {
+    color: #0056b3; /* Màu khi hover vào clear */
+  }
+  
+  /* Tùy chỉnh focus cho ng-select */
+  ::ng-deep ng-select:focus-within {
+    border-color: #007bff; /* Đổi màu viền khi focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Hiệu ứng focus */
+  }
+  

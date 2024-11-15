@@ -1,0 +1,204 @@
+<div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/trang-chu">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">Dashboard</div>
+        </a>
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link" href="/hoc-bong">
+                <i class="fas fa-fw fa-dollar-sign"></i>
+                <span>Học Bổng</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/truong-hoc">
+                <i class="fas fa-fw fa-school"></i>
+                <span>Trường Học</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/chuyen-nganh">
+                <i class="fas fa-user-graduate"></i>
+                <span>Chuyên ngành</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/quoc-gia">
+                <i class="fas fa-globe-asia"></i>
+                <span>Quốc gia</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link" (click)="logout()">
+                <i class="fas fa-fw fa-sign-out-alt"></i>
+                <span>Đăng xuất</span>
+            </a>
+        </li>
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <div href="#">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{userName}}</span>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <!-- End of Topbar -->
+
+            <div class="container mt-4">
+                <h3 class="text-center mb-4">Thêm Học Bổng Mới</h3>
+                <form [formGroup]="scholarshipForm">
+                    <div class="row">
+                        <!-- Tên Học Bổng -->
+                        <div class="col-12 col-md-6 mb-3">
+                            <label for="name" class="form-label">Tên Học Bổng</label>
+                            <input type="text" class="form-control" formControlName="name" id="name"
+                                placeholder="Nhập tên học bổng" name="name" />
+                        </div>
+
+                        <!-- Giá Trị Học Bổng -->
+                        <div class="col-12 col-md-6 mb-3">
+                            <label for="grantAmount" class="form-label">Giá Trị Học Bổng</label>
+                            <input type="text" class="form-control" id="grantAmount" placeholder="Nhập giá trị học bổng"
+                                formControlName="grantAmount" name="grantAmount" />
+                        </div>
+
+                        <!-- Số Lượng -->
+                        <div class="col-12 col-md-6 mb-3">
+                            <label for="quantity" class="form-label">Số Lượng</label>
+                            <input type="number" class="form-control" id="quantity" placeholder="Nhập số lượng"
+                                formControlName="quantity" name="quantity" />
+                        </div>
+                          <!-- GPA -->
+                          <div class="col-12 col-md-6 mb-3">
+                            <label for="gpa" class="form-label">GPA tối thiểu</label>
+                            <input type="text" class="form-control" id="gpa" formControlName="gpa"
+                                name="gpa" />
+                        </div>
+                        <!-- Ngày Bắt Đầu -->
+                        <div class="col-12 col-md-6 mb-3">
+                            <label for="startDate" class="form-label">Ngày Bắt Đầu</label>
+                            <input type="date" class="form-control" id="startDate" formControlName="startDate"
+                                name="startDate" />
+                        </div>
+
+                        <!-- Ngày Kết Thúc -->
+                        <div class="col-12 col-md-6 mb-3">
+                            <label for="endDate" class="form-label">Ngày Kết Thúc</label>
+                            <input type="date" class="form-control" id="endDate" formControlName="endDate"
+                                name="endDate" />
+                        </div>
+                        <!-- Mã Trường với ng-select -->
+                        <div class="col-12 col-md-6 mb-3">
+                            <label for="schoolId" class="form-label">Tên Trường</label>
+                            <ng-template *ngIf="schoolOptions.length;then content else other_content"></ng-template>
+                            <ng-template #other_content> <ng-select [items]="schoolOptions" bindLabel="name"
+                                    bindValue="id" [searchable]="true" (search)="onSchoolInput($event)"
+                                    (change)="onSchoolChange($event)" [clearable]="false" formControlName="schoolId"
+                                    name="schoolId">
+                                </ng-select></ng-template>
+                            <ng-template #content> <ng-select [items]="schoolOptions" bindLabel="name" bindValue="id"
+                                    [searchable]="true" (search)="onSchoolInput($event)"
+                                    (change)="onSchoolChange($event)" [clearable]="false" formControlName="schoolId"
+                                    name="schoolId">
+                                </ng-select></ng-template>
+                        </div>
+
+                        <!-- Chuyên Ngành -->
+                        <div class="col-12 col-md-6 mb-3">
+                            <label for="fieldOfStudyId" class="form-label">Tên Chuyên Ngành</label>
+                            <ng-template
+                                *ngIf="fieldOfStudyOptions.length;then contentt else other_contentt"></ng-template>
+                            <ng-template #other_contentt><ng-select [items]="fieldOfStudyOptions" bindLabel="name"
+                                    bindValue="id" [searchable]="true" (search)="onFieldOfStudyInput($event)"
+                                    (change)="onFieldOfStudyChange($event)" formControlName="fieldOfStudyId"
+                                    [clearable]="false" name="fieldOfStudyId">
+                                </ng-select></ng-template>
+                            <ng-template #contentt><ng-select [items]="fieldOfStudyOptions" bindLabel="name"
+                                    bindValue="id" [searchable]="true" (search)="onFieldOfStudyInput($event)"
+                                    (change)="onFieldOfStudyChange($event)" formControlName="fieldOfStudyId"
+                                    [clearable]="false" name="fieldOfStudyId">
+                                </ng-select></ng-template>
+                        </div>
+                        
+                        <!-- Mô Tả -->
+                        <div class="col-12 col-md-6 mb-3">
+                            <label for="description" class="form-label">Mô Tả</label>
+                            <ckeditor formControlName="description" [editor]="Editor.default" [config]="editorConfig"
+                                name="description">
+                            </ckeditor>
+                        </div>
+
+                        <!--Điều kiện -->
+                        <div class="col-12 col-md-6 mb-3">
+                            <label for="eligibility" class="form-label">Điều kiện</label>
+                            <ckeditor formControlName="eligibility" [editor]="Editor.default" [config]="editorConfig"
+                                name="eligibility">
+                            </ckeditor>
+                        </div>
+                    </div>
+
+                    <!-- Nút Tùy Chọn -->
+                    <div class="d-flex justify-content-center mt-4">
+                        <ng-template *ngIf="id;then add else cancel"></ng-template>
+                        <ng-template #add>
+                            <button (click)="onSubmit(true)" type="submit" [disabled]="!scholarshipForm.valid"
+                                class="btn btn-primary mx-2" style="background-color: #007bff; border-color: #007bff;">
+                                Cập nhật
+                            </button></ng-template>
+                        <ng-template #cancel> <button (click)="onSubmit(false)" type="submit" [disabled]="!scholarshipForm.valid"
+                            class="btn btn-primary mx-2" style="background-color: #007bff; border-color: #007bff;">
+                            Thêm
+                        </button></ng-template>
+                        <button type="button" class="btn btn-secondary mx-2">Hủy</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- End of Main Content -->
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Bản quyền&copy; Nguyễn Đức Long 2024</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+    </div>
+    <!-- End of Content Wrapper -->
+</div>

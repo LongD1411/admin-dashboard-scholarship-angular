@@ -1,0 +1,41 @@
+.form-label {
+    display: block; /* Đảm bảo rằng label luôn xuống dòng */
+}
+
+/* Tạo kiểu cho thẻ select */
+.form-select {
+    width: 100%; /* Đảm bảo select chiếm hết chiều rộng */
+    border-radius: 4px; /* Bo tròn các góc */
+    background-color: #f8f9fa; /* Màu nền sáng */
+    padding: 5px 10px; /* Padding cho select */
+    font-size: 14px; /* Kích thước chữ */
+    color: #495057; /* Màu chữ */
+    border: 1px solid #ccc; /* Viền mờ */
+    transition: background-color 0.3s ease-in-out; /* Hiệu ứng chuyển màu nền */
+}
+
+.form-select:focus {
+    outline: none; /* Bỏ viền mặc định khi focus */
+    border-color: #007bff; /* Viền màu xanh khi focus */
+    background-color: #e9ecef; /* Màu nền khi focus */
+}
+
+/* Tạo kiểu cho các option */
+.form-select option {
+    background-color: #ffffff; /* Nền trắng cho option */
+    color: #495057; /* Màu chữ cho option */
+    padding: 8px 10px; /* Padding cho option */
+    font-size: 14px; /* Kích thước chữ */
+}
+
+/* Tạo hiệu ứng hover cho option */
+.form-select option:hover {
+    background-color: #007bff; /* Nền màu xanh khi hover */
+    color: white; /* Chữ màu trắng khi hover */
+}
+
+/* Tạo hiệu ứng cho option đã chọn */
+.form-select option:checked {
+    background-color: #007bff; /* Màu nền khi option được chọn */
+    color: white; /* Chữ trắng khi chọn */
+}

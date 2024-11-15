@@ -1,0 +1,163 @@
+<div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/trang-chu">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">Dashboard</div>
+        </a>
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link" href="/hoc-bong">
+                <i class="fas fa-fw fa-dollar-sign"></i>
+                <span>Học Bổng</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/truong-hoc">
+                <i class="fas fa-fw fa-school"></i>
+                <span>Trường Học</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/chuyen-nganh">
+                <i class="fas fa-user-graduate"></i>
+                <span>Chuyên ngành</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/quoc-gia">
+                <i class="fas fa-globe-asia"></i>
+                <span>Quốc gia</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link" (click)="logout()">
+                <i class="fas fa-fw fa-sign-out-alt"></i>
+                <span>Đăng xuất</span>
+            </a>
+        </li>
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <div href="#">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{userName}}</span>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <!-- End of Topbar -->
+
+            <div class="container mt-4">
+                <h3 class="text-center mb-4">Thêm Quốc Gia Mới</h3>
+                <form [formGroup]="countryForm">
+                    <div class="row">
+                        <!-- Mã Quốc Gia -->
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+                            <label for="code" class="form-label">Mã Quốc Gia</label>
+                            <input [disabled]="check" type="text" class="form-control form-control-sm" id="code" 
+                                placeholder="Nhập mã quốc gia" formControlName="code" name="countryCode" [ngClass]="{
+                                'is-valid': countryForm.get('code')?.valid && (countryForm.get('code')?.touched || countryForm.get('code')?.dirty),
+                                'is-invalid': !countryForm.get('code')?.valid && (countryForm.get('code')?.touched || countryForm.get('code')?.dirty)  
+                              }">
+                              
+                        </div>
+
+                        <!-- Tên Quốc Gia -->
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-5 mb-3">
+                            <label for="name" class="form-label">Tên Quốc Gia</label>
+                            <input type="text" class="form-control form-control-sm" id="name"
+                                placeholder="Nhập tên quốc gia" formControlName="name" name="countryName" [ngClass]="{
+                                'is-valid': countryForm.get('name')?.valid && (countryForm.get('name')?.touched || countryForm.get('name')?.dirty),
+                                'is-invalid': !countryForm.get('name')?.valid && (countryForm.get('name')?.touched || countryForm.get('name')?.dirty)  
+                              }">
+                        </div>
+
+                        <!-- Châu Lục -->
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+                            <label for="continent" class="form-label">Châu Lục</label>
+                            <select class="form-select form-select-sm" id="continent" formControlName="continent"
+                                name="continent" [ngClass]="{
+                                'is-valid': countryForm.get('continent')?.valid && (countryForm.get('continent')?.touched || countryForm.get('continent')?.dirty),
+                                'is-invalid': !countryForm.get('continent')?.valid && (countryForm.get('continent')?.touched || countryForm.get('continent')?.dirty)  
+                              }">
+                                <option value="" disabled selected>Chọn châu lục</option>
+                                <option value="Asia">Châu Á</option>
+                                <option value="Europe">Châu Âu</option>
+                                <option value="Africa">Châu Phi</option>
+                                <option value="Oceania">Châu Đại Dương</option>
+                                <option value="North America">Bắc Mỹ</option>
+                                <option value="South America">Nam Mỹ</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Tùy chọn -->
+                    <div class="d-flex justify-content-center mt-4">
+                        <ng-template *ngIf="code;then content else other_content"></ng-template>
+                        <ng-template #content>
+                            <button (click)="onSubmit(true)" type="submit" [disabled]="!countryForm.valid"
+                                class="btn btn-primary mx-2" style="background-color: #007bff; border-color: #007bff;">
+                                Cập nhật
+                            </button></ng-template>
+                        <ng-template #other_content> <button (click)="onSubmit(false)" type="submit" [disabled]="!countryForm.valid"
+                            class="btn btn-primary mx-2" style="background-color: #007bff; border-color: #007bff;">
+                            Thêm
+                        </button></ng-template>
+                        <button type="button" class="btn btn-secondary mx-2"
+                            style="background-color: #6c757d; border-color: #6c757d;">
+                            Hủy
+                        </button>   
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+        <!-- End of Main Content -->
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Bản quyền&copy; Nguyễn Đức Long 2024</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+    </div>
+    <!-- End of Content Wrapper -->
+</div>

@@ -18,8 +18,17 @@
     "@angular/platform-browser": "^18.1.0",
     "@angular/platform-browser-dynamic": "^18.1.0",
     "@angular/router": "^18.1.0",
+    "@ckeditor/ckeditor5-angular": "^9.0.0",
+    "@ckeditor/ckeditor5-build-classic": "^43.3.1",
+    "@ckeditor/ckeditor5-core": "^43.3.1",
+    "@ng-select/ng-select": "^13.9.1",
+    "@types/chart.js": "^2.9.41",
+    "chart.js": "^4.4.6",
+    "ngx-datepicker": "^0.0.0",
     "rxjs": "~7.8.0",
+    "sweetalert2": "^11.14.5",
     "tslib": "^2.3.0",
+    "yarn": "^1.22.22",
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
