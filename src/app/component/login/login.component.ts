@@ -26,14 +26,14 @@ export class LoginComponent {
     private alert: SweetAlertService
   ) {
     this.loginForm = this.fb.group({
-      userName: ['', [Validators.required, Validators.minLength(5)]],
-      password: ['', [Validators.required, Validators.minLength(5)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
     });
   }
   submitHandler() {
     if (this.loginForm.valid) {
       const loginData = {
-        userName: this.loginForm.get('userName')?.value,
+        email: this.loginForm.get('email')?.value,
         password: this.loginForm.get('password')?.value,
       };
       this.authService.login(loginData).subscribe({
@@ -41,11 +41,11 @@ export class LoginComponent {
           const token = response.result.token;
           this.authService.setToken(token);
           const payload = JSON.parse(atob(token.split('.')[1]));
-          localStorage.setItem("userName",payload.sub);
+          localStorage.setItem("email",payload.sub);
           if (payload.scope && payload.scope.includes('ROLE_ADMIN')) {
             window.location.href = '/trang-chu';  
+            localStorage.setItem('successMessage', 'Đăng nhập thành công');
           }
-          this.alert.showSuccess('Đăng nhập thành công');
         },
         error: (error) => {
           this.alert.showError(error.error.message);
@@ -56,8 +56,8 @@ export class LoginComponent {
       this.registrationMessage = 'Điền đúng định dạng các trường.';
     }
   }
-  get userName() {
-    return this.loginForm.get('userName')!;
+  get email() {
+    return this.loginForm.get('email')!;
   }
   get password() {
     return this.loginForm.get('password')!;

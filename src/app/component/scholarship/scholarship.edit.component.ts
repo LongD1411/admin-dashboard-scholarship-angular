@@ -48,7 +48,7 @@ import { AuthService } from '../../service/auth.service';
   styleUrl: './scholarship.edit.component.css',
 })
 export class ScholarshipEditComponent implements OnInit {
-  userName: string = localStorage.getItem('userName') || 'Unknow';
+  email: string = localStorage.getItem('email') || 'Unknow';
   scholarshipForm: FormGroup;
   searchTerms: Subject<string> = new Subject<string>();
   searchTerms2: Subject<string> = new Subject<string>();
@@ -125,6 +125,7 @@ export class ScholarshipEditComponent implements OnInit {
           });
         },
       });
+      
     }
     this.searchTerms
       .pipe(

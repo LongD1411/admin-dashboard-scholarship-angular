@@ -22,7 +22,7 @@ import { AuthService } from '../../service/auth.service';
   styleUrl: './field.of.study.edit.component.css',
 })
 export class FieldOfStudyEditComponent implements OnInit {
-  userName: string = localStorage.getItem('userName') || "Unknow";
+  email: string = localStorage.getItem('email') || "Unknow";
   fieldOfStudy: FieldOfStudyResponse | undefined;
   id: string | undefined;
   fieldOfStudyForm: FormGroup;

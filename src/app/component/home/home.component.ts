@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   scholarshipsUpdatedLastWeek: number | undefined;
   chart: any = [];
   chart2: any = [];
-  chart3: any = []; 
+  chart3: any = [];
   chart4: any = [];
   countByMonth: any;
   fieldOfStudyId: any[] = [];
@@ -36,6 +36,11 @@ export class HomeComponent implements OnInit {
     private scholarshipSerivce: ScholashipService
   ) {}
   ngOnInit(): void {
+    const message = localStorage.getItem('successMessage');
+    if (message) {
+        this.alert.showSuccess(message);
+        localStorage.removeItem('successMessage');
+    }
     forkJoin([
       this.scholarshipSerivce.getExpiringScholarship(),
       this.scholarshipSerivce.getScholarshipsUpdatedLastWeek(),
@@ -58,7 +63,7 @@ export class HomeComponent implements OnInit {
         const monthlyData = Array(12).fill(0);
         Object.keys(this.countByMonth).forEach((key) => {
           const [year, month] = key.split('-').map(Number);
-          if (year === 2024) {
+          if (year === 2025) {
             monthlyData[month - 1] = this.countByMonth[key];
           }
         });
@@ -98,9 +103,7 @@ export class HomeComponent implements OnInit {
           },
         });
         this.countries = countByCountry.results.map((item: [any, number]) => ({
-          name: item[0].name,
-          code: item[0].code,
-          continent: item[0].continent,
+          name: item[0],
           scholarships: item[1],
         }));
         const countryLabels = this.countries.map((item) => item.name);
@@ -131,7 +134,9 @@ export class HomeComponent implements OnInit {
         const labelsF = this.fieldOfStudyId.map((item) => item[0]);
         const valuesF = this.fieldOfStudyId.map((item) => item[1]);
         const total = valuesF.reduce((acc, curr) => acc + curr, 0);
-        const percentageValues = valuesF.map(value => (value / total * 100).toFixed(2));
+        const percentageValues = valuesF.map((value) =>
+          ((value / total) * 100).toFixed(2)
+        );
         this.chart2 = new Chart('canvas3', {
           type: 'pie',
           data: {
@@ -167,9 +172,7 @@ export class HomeComponent implements OnInit {
               tooltip: {
                 callbacks: {
                   label: function (tooltipItem) {
-                    return (
-                      tooltipItem.label + ': ' + tooltipItem.raw + '%'
-                    );
+                    return tooltipItem.label + ': ' + tooltipItem.raw + '%';
                   },
                 },
               },
@@ -204,7 +207,7 @@ export class HomeComponent implements OnInit {
       },
     });
   }
-  userName: string = localStorage.getItem('userName') || 'Unknow';
+  email: string = localStorage.getItem('email') || 'Unknow';
   logout() {
     this.alert.showConfirm('Cảnh bảo', 'Xác nhận đăng xuất').then((result) => {
       if (result.isConfirmed) {

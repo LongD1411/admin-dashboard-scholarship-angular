@@ -6,25 +6,21 @@
           <div class="login-form mx-auto">
             <h2 class="login-header">Đăng nhập</h2>
             <div class="form-group">
-              <label for="userName">Tên tài khoản</label>
-              <input type="text" class="form-control" id="userName" formControlName="userName" [ngClass]="{
+              <label for="email">Tên tài khoản</label>
+              <input type="text" class="form-control" id="email" formControlName="email" [ngClass]="{
                   'is-valid':
-                    loginForm.get('userName')?.valid &&
-                    (loginForm.get('userName')?.touched ||
-                      loginForm.get('userName')?.dirty),
+                    loginForm.get('email')?.valid &&
+                    (loginForm.get('email')?.touched ||
+                      loginForm.get('email')?.dirty),
                   'is-invalid':
-                    !loginForm.get('userName')?.valid &&
-                    (loginForm.get('userName')?.touched ||
-                      loginForm.get('userName')?.dirty)
+                    !loginForm.get('email')?.valid &&
+                    (loginForm.get('email')?.touched ||
+                      loginForm.get('email')?.dirty)
                 }" />
             </div>
             <div class="form-group password-field">
               <label for="password">Mật khẩu</label>
               <input type="password" class="form-control" id="password" formControlName="password" [ngClass]="{
-                  'is-valid':
-                    loginForm.get('password')?.valid &&
-                    (loginForm.get('password')?.touched ||
-                      loginForm.get('password')?.dirty),
                   'is-invalid':
                     !loginForm.get('password')?.valid &&
                     (loginForm.get('password')?.touched ||
@@ -33,13 +29,18 @@
             </div>
             <button type="submit" class="login-button" (click)="submitHandler()" [disabled]="!loginForm.valid">Đăng nhập</button>
             <div class="divider"></div>
-            <p class="text-center">
-              Bạn chưa có tài khoản ?
-              <span><a href ="/dang-nhap"class="register-link">Tạo tài khoản</a></span>
-            </p>
+            <p class="al text-center">
+            Bạn chưa có tài khoản ?
+            <span><a routerLink="/dang-ki" class="login-link">Đăng kí</a></span>
+           </p>
           </div>
         </div>
       </div>
+      <!-- <form action="http://localhost:8088/oauth2/authorization/google" method="GET">
+          <button type="submit" class="login-with-google-btn mt-2">
+            Sign in with Google
+          </button>
+    </form > -->
     </form>
   </div>
   

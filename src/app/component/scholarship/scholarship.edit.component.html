@@ -72,7 +72,7 @@
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <div href="#">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{userName}}</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{email}}</span>
                         </div>
                     </li>
                 </ul>
@@ -80,7 +80,8 @@
             <!-- End of Topbar -->
 
             <div class="container mt-4">
-                <h3 class="text-center mb-4">Thêm Học Bổng Mới</h3>
+                <h3 *ngIf="!id" class="text-center mb-4">Thêm Học Bổng</h3>
+                <h3 *ngIf="id" class="text-center mb-4">Cập Nhật Học Bổng</h3>
                 <form [formGroup]="scholarshipForm">
                     <div class="row">
                         <!-- Tên Học Bổng -->

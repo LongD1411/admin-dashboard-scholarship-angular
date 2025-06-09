@@ -21,7 +21,7 @@ import { AuthService } from '../../service/auth.service';
   styleUrl: './country.edit.component.css',
 })
 export class CountryEditComponent implements OnInit {
-  userName: string = localStorage.getItem('userName') || "Unknow";
+  email: string = localStorage.getItem('email') || "Unknow";
   country: CountryResponse | undefined;
   code: string | undefined;
   countryForm: FormGroup;

@@ -26,7 +26,7 @@ import { AuthService } from '../../service/auth.service';
   styleUrl: './school.edit.component.css',
 })
 export class SchoolEditComponent implements OnInit {
-  userName: string = localStorage.getItem('userName') || "Unknow";
+  email: string = localStorage.getItem('email') || "Unknow";
   schoolResponse: SchoolResponse | undefined;
   countries: CountryResponse[] = [];
   selectedCountry: string = '';

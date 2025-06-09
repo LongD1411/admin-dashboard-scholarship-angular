@@ -17,7 +17,7 @@ import { AuthService } from '../../service/auth.service';
   templateUrl: './scholarship.component.html',
 })
 export class ScholarshipComponent implements OnInit {
-  userName: string = localStorage.getItem('userName') || 'Unknow';
+  email: string = localStorage.getItem('email') || 'Unknow';
   scholarships: ScholashipResponse[] = [];
   keyword: string = '';
   currentPage: number = 1;

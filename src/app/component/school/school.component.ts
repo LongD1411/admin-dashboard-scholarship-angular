@@ -15,7 +15,7 @@ import { AuthService } from '../../service/auth.service';
   templateUrl: './school.component.html',
 })
 export class SchoolComponent implements OnInit {
-  userName: string = localStorage.getItem('userName') || "Unknow";
+  email: string = localStorage.getItem('email') || "Unknow";
   schools: SchoolResponse[] = [];
   keyword: string = '';
   currentPage: number = 1;

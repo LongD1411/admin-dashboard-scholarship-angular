@@ -14,7 +14,7 @@ import { AuthService } from '../../service/auth.service';
   templateUrl: './country.component.html',
 })
 export class CountryComponent implements OnInit {
-  userName: string = localStorage.getItem('userName') || "Unknow";
+  email: string = localStorage.getItem('email') || "Unknow";
   countries: CountryResponse[] = [];
   keyword: string = '';
   currentPage: number = 1;

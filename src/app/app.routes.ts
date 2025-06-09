@@ -10,11 +10,16 @@ import { SchoolEditComponent } from './component/school/school.edit.component';
 import { ScholarshipEditComponent } from './component/scholarship/scholarship.edit.component';
 import { LoginComponent } from './component/login/login.component';
 import { AuthGuard } from './guard/auth.guard';
+import { RegisterComponent } from './component/register/register.component';
 
 export const routes: Routes = [
   {
     path: 'dang-nhap',
     component: LoginComponent,
+  },
+  {
+    path: 'dang-ki',
+    component: RegisterComponent,
   },
   {
     path: 'trang-chu',

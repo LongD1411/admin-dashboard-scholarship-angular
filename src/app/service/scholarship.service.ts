@@ -43,20 +43,21 @@ export class ScholashipService {
       }
     );
   }
-  getExpiringScholarship(): Observable<BaseResponse<number>> {
+  getExpiringScholarship():  Observable<BaseResponse<number>> {
     return this.http.get<BaseResponse<number>>(this.apiExpiringScholarship);
   }
   getScholarshipsUpdatedLastWeek(): Observable<BaseResponse<number>> {
     return this.http.get<BaseResponse<number>>(this.apiScholarshipsUpdatedLastWeek);
   }
   getScholarshipsByMonth(): Observable<BaseResponse<any>> {
-    return this.http.get<BaseResponse<any>>(this.apiCountByMonth);
+
+    return this.http.get<BaseResponse<any>>(this.apiCountByMonth);      
   }
   getScholarshipsByCountry(): Observable<BaseResponse<any>> {
     return this.http.get<BaseResponse<any>>(this.apiCountByCountry);
   }
   getScholarshipsByFieldOfStudy(): Observable<BaseResponse<any>> {
-    return this.http.get<BaseResponse<any>>(this.apiCountByFieldOfStudy);
+     return this.http.get<BaseResponse<any>>(this.apiCountByFieldOfStudy);
   }
   getScholarshipsByTopSearch(): Observable<BaseResponse<any>> {
     return this.http.get<BaseResponse<any>>(this.apiCountByTopSearch);
