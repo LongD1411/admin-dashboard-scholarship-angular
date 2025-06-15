@@ -3,53 +3,48 @@
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-        <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/trang-chu">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" [routerLink]="['/quan-ly']">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
             <div class="sidebar-brand-text mx-3">Dashboard</div>
         </a>
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-        <!-- Nav Item - Pages Collapse Menu -->
+
+        <!-- Nav Items -->
         <li class="nav-item">
-            <a class="nav-link" href="/hoc-bong">
+            <a class="nav-link" [routerLink]="['/quan-ly/hoc-bong']">
                 <i class="fas fa-fw fa-dollar-sign"></i>
                 <span>Học Bổng</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="/truong-hoc">
+            <a class="nav-link" [routerLink]="['/quan-ly/truong-hoc']">
                 <i class="fas fa-fw fa-school"></i>
                 <span>Trường Học</span>
             </a>
         </li>
+
         <li class="nav-item">
-            <a class="nav-link" href="/chuyen-nganh">
+            <a class="nav-link" [routerLink]="['/quan-ly/chuyen-nganh']">
                 <i class="fas fa-user-graduate"></i>
                 <span>Chuyên ngành</span>
             </a>
         </li>
+
         <li class="nav-item">
-            <a class="nav-link" href="/quoc-gia">
+            <a class="nav-link" [routerLink]="['/quan-ly/quoc-gia']">
                 <i class="fas fa-globe-asia"></i>
                 <span>Quốc gia</span>
             </a>
         </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link" (click)="logout()">
                 <i class="fas fa-fw fa-sign-out-alt"></i>
                 <span>Đăng xuất</span>
             </a>
         </li>
-
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
@@ -73,11 +68,10 @@
                 </button>
 
                 <!-- Topbar Search -->
-                <form
-                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Tìm kiếm" [(ngModel)]="keyword" name="keyword"
-                            aria-label="Search" aria-describedby="basic-addon2">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Tìm kiếm"
+                            [(ngModel)]="keyword" name="keyword" aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="button" (click)="searchKeyword()">
                                 <i class="fas fa-search fa-sm"></i>
@@ -100,8 +94,7 @@
                             <form class="form-inline mr-auto w-100 navbar-search">
                                 <div class="input-group">
                                     <input type="text" class="form-control bg-light border-0 small"
-                                        placeholder="Search for..." aria-label="Search"
-                                        aria-describedby="basic-addon2">
+                                        placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" type="button">
                                             <i class="fas fa-search fa-sm"></i>
@@ -147,8 +140,10 @@
                                     <td class="text-wrap" style="width: 450px;">{{fieldOfStudy.name}}</td>
                                     <td>
                                         <div>
-                                            <input class="btn btn-primary btn-sm mr-1" type="button" value="Sửa" (click)="viewFieldOfStudy(fieldOfStudy.id)" />
-                                            <input class="btn btn-danger btn-sm" type="button" value="Xóa" (click)="deleteFieldOfStudy(fieldOfStudy.id)" />
+                                            <input class="btn btn-primary btn-sm mr-1" type="button" value="Sửa"
+                                                (click)="viewFieldOfStudy(fieldOfStudy.id)" />
+                                            <input class="btn btn-danger btn-sm" type="button" value="Xóa"
+                                                (click)="deleteFieldOfStudy(fieldOfStudy.id)" />
                                         </div>
                                     </td>
                                 </tr>
@@ -163,35 +158,35 @@
 
             <ng-container *ngIf="fieldOfStudies.length >= 1">
                 <div class="col-12 pb-1">
-                  <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center mb-3">
-                      <!-- Nút Previous -->
-                      <li class="page-item" [ngClass]="{ disabled: currentPage === 1 }">
-                        <a class="page-link" (click)="changePage(currentPage - 1)" aria-label="Previous">
-                          <span aria-hidden="true">&laquo;</span>
-                          <span class="sr-only">Previous</span>
-                        </a>
-                      </li>
-              
-                      <!-- Các trang phân trang -->
-                      <li *ngFor="let page of generateVisiblePageArray(currentPage, totalsPages)"
-                          class="page-item" [ngClass]="{ active: page == currentPage, disabled: page === '...' }">
-                        <a class="page-link" (click)="changePageIfValid(page)">
-                          {{ page }}
-                        </a>
-                      </li>
-              
-                      <!-- Nút Next -->
-                      <li class="page-item" [ngClass]="{ disabled: currentPage === totalsPages }">
-                        <a class="page-link" (click)="changePage(+currentPage + 1)" aria-label="Next">
-                          <span aria-hidden="true">&raquo;</span>
-                          <span class="sr-only">Next</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center mb-3">
+                            <!-- Nút Previous -->
+                            <li class="page-item" [ngClass]="{ disabled: currentPage === 1 }">
+                                <a class="page-link" (click)="changePage(currentPage - 1)" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+
+                            <!-- Các trang phân trang -->
+                            <li *ngFor="let page of generateVisiblePageArray(currentPage, totalsPages)"
+                                class="page-item" [ngClass]="{ active: page == currentPage, disabled: page === '...' }">
+                                <a class="page-link" (click)="changePageIfValid(page)">
+                                    {{ page }}
+                                </a>
+                            </li>
+
+                            <!-- Nút Next -->
+                            <li class="page-item" [ngClass]="{ disabled: currentPage === totalsPages }">
+                                <a class="page-link" (click)="changePage(+currentPage + 1)" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-              </ng-container>     
+            </ng-container>
         </div>
         <!-- End of Main Content -->
         <!-- Footer -->

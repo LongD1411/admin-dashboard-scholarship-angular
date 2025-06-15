@@ -10,7 +10,7 @@ import { Router, RouterLink } from '@angular/router';
 import { SweetAlertService } from '../../service/sweet.alert.service';
 import { AuthService } from '../../service/auth.service';
 @Component({
-  selector: 'app-login',
+  selector: 'app-root',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, RouterLink],
   templateUrl: './login.component.html',
