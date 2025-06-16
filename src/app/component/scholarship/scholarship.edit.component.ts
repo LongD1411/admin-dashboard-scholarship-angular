@@ -93,6 +93,7 @@ export class ScholarshipEditComponent implements OnInit {
       fieldOfStudyId: [0, Validators.required],
       startDate: [''],
       endDate: [''],
+      url:['']
     });
   }
   ngOnInit(): void {
@@ -112,6 +113,7 @@ export class ScholarshipEditComponent implements OnInit {
             name: response.result.fieldOfStudyName,
           });
           this.scholarshipForm.patchValue({
+            url: this.scholarshipResponse?.url,
             name: this.scholarshipResponse?.name,
             description: this.scholarshipResponse?.description,
             schoolId: this.scholarshipResponse?.schoolId,
@@ -129,7 +131,7 @@ export class ScholarshipEditComponent implements OnInit {
     }
     this.searchTerms
       .pipe(
-        debounceTime(700),
+        debounceTime(300),
         distinctUntilChanged(),
         switchMap((term) => this.searchSchools(term))
       )
@@ -143,7 +145,7 @@ export class ScholarshipEditComponent implements OnInit {
       );
     this.searchTerms2
       .pipe(
-        debounceTime(700),
+        debounceTime(300),
         distinctUntilChanged(),
         switchMap((term) => this.searchFieldsOfStudy(term))
       )
@@ -159,6 +161,7 @@ export class ScholarshipEditComponent implements OnInit {
   onSubmit(check: boolean) {
     if (this.scholarshipForm.valid) {
       const data: ScholarshipDTO = {
+        url: this.scholarshipForm.get('url')?.value,
         name: this.scholarshipForm.get('name')?.value,
         description: this.scholarshipForm.get('description')?.value,
         grantAmount: this.scholarshipForm.get('grantAmount')?.value,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FieldOfStudyService } from '../../service/field.of.study.service';
 import { FieldOfStudyResponse } from '../../response/field.of.study.response';
 import { CommonModule } from '@angular/common';
@@ -10,7 +10,7 @@ import { AuthService } from '../../service/auth.service';
 @Component({
   selector: 'app-field.of.study',
   standalone: true,
-  imports: [RouterLink, CommonModule,FormsModule,RouterModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './field.of.study.component.html',
 })
 export class FieldOfStudyComponent implements OnInit {

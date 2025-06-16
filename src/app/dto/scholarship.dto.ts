@@ -1,4 +1,5 @@
 export class ScholarshipDTO {
+  url:string;
   name: string;
   description: string;
   grantAmount: string;
@@ -11,6 +12,7 @@ export class ScholarshipDTO {
   endDate: Date;
 
   constructor(data: any) {
+    this.url = data.url;
     this.name = data.name;
     this.description = data.description;
     this.grantAmount = data.grantAmount;

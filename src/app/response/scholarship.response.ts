@@ -19,4 +19,5 @@ export interface ScholashipResponse {
   fieldOfStudyId: string;
   createdAt: Date;
   updatedAt: Date;
+  url:string
 }

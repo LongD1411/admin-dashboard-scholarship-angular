@@ -1,6 +1,7 @@
 <div id="wrapper">
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/trang-chu">
             <div class="sidebar-brand-icon rotate-n-15">
@@ -9,7 +10,7 @@
             <div class="sidebar-brand-text mx-3">Dashboard</div>
         </a>
         <!-- Divider -->
-        <hr class="sidebar-divider" />
+        <hr class="sidebar-divider">
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link" href="/hoc-bong">
@@ -24,7 +25,6 @@
                 <span>Trường Học</span>
             </a>
         </li>
-
         <li class="nav-item">
             <a class="nav-link" href="/chuyen-nganh">
                 <i class="fas fa-user-graduate"></i>
@@ -39,7 +39,7 @@
         </li>
 
         <!-- Divider -->
-        <hr class="sidebar-divider" />
+        <hr class="sidebar-divider">
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
@@ -48,6 +48,7 @@
                 <span>Đăng xuất</span>
             </a>
         </li>
+
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
@@ -90,13 +91,21 @@
                             <input type="text" class="form-control" id="name" placeholder="Nhập tên trường"
                                 formControlName="name" name="name"  />
                         </div>
-
+                        <!-- Quốc Gia -->
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-5 mb-3">
+                            <label for="countryCode" class="form-label">Quốc Gia</label>
+                            <ng-select [items]="countries" bindLabel="name" bindValue="code"
+                            (change)="onCountryChange($event)" [searchable]="true" formControlName="countryCode"
+                                [clearable]="false" name="countryCode"> 
+                            </ng-select>
+                        </div>
                         <!-- Logo -->
                         <div class="col-12 col-sm-6 col-md-4 col-lg-5 mb-3">
                             <label for="logo" class="form-label">Logo</label>
-                            <input type="url" class="form-control" id="logo" placeholder="Nhập URL Logo"
+                            <input type="text" class="form-control" id="logo" placeholder="Nhập URL Logo"
                             formControlName="logo" name="logo"  />
                         </div>
+                       
                         <!-- Nhà Cung Cấp -->
                         <div class="col-12 col-sm-6 col-md-4 col-lg-5 mb-3">
                             <label for="provider" class="form-label">Tỉnh / Thành phố</label>
@@ -109,20 +118,43 @@
                             <input type="number" class="form-control" id="rankValue" placeholder="Nhập thứ hạng"
                             formControlName="rankValue" name="rankValue"  />
                         </div>
-                        <!-- Quốc Gia -->
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-5 mb-3">
-                            <label for="countryCode" class="form-label">Quốc Gia</label>
-                            <ng-select [items]="countries" bindLabel="name" bindValue="code"
-                            (change)="onCountryChange($event)" [searchable]="true" formControlName="countryCode"
-                                [clearable]="false" name="countryCode"> 
-                            </ng-select>
-                        </div>
+                        
                           <!-- Mô Tả -->
                           <div class="col-12 col-sm-6 col-md-4 col-lg-5 mb-3">
                             <label for="description" class="form-label">Mô Tả</label>
                             <textarea  class="form-control" id="description" placeholder="Nhập mô tả"
                             formControlName="description" name="description" ></textarea>
                         </div>
+                         <!-- URL -->
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-5 mb-3">
+                            <label for="url" class="form-label">URL trang chủ</label>
+                            <input type="text" class="form-control" id="url" placeholder="Nhập URL nhà trường"
+                            formControlName="url" name="url"  />
+                        </div>
+                        <!-- students -->
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-5 mb-3">
+                            <label for="students" class="form-label">Số lượng sinh viên</label>
+                            <input type="number" class="form-control" id="students"
+                            formControlName="students" name="students"  />
+                        </div>
+                         <!-- field_of_study -->
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-5 mb-3">
+                            <label for="fieldOfStudy" class="form-label">Số lượng chuyên ngành</label>
+                            <input type="number" class="form-control" id="fieldOfStudy"
+                            formControlName="fieldOfStudy" name="fieldOfStudy"  />
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-5 mb-3">
+                            <label for="type" class="form-label">Loại hình đào tạo</label>
+                            <input type="text" class="form-control" id="type"
+                            formControlName="type" name="type"  />
+                        </div>
+                        <div class="col-12 col-md-6 mb-3">
+                            <label for="topReason" class="form-label">Ưu điểm</label>
+                            <ckeditor formControlName="topReason" [editor]="Editor.default" [config]="editorConfig"
+                                name="topReason">
+                            </ckeditor>
+                        </div>
+                        
                     </div>
 
                     <!-- Tùy chọn -->

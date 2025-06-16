@@ -17,11 +17,13 @@ import { SweetAlertService } from '../../service/sweet.alert.service';
 import { SchoolResponse } from '../../response/school.response';
 import { SchoolDTO } from '../../dto/school.dto';
 import { AuthService } from '../../service/auth.service';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-school.edit',
   standalone: true,
-  imports: [CommonModule, FormsModule, NgSelectModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, NgSelectModule, ReactiveFormsModule,CKEditorModule],
   templateUrl: './school.edit.component.html',
   styleUrl: './school.edit.component.css',
 })
@@ -32,13 +34,30 @@ export class SchoolEditComponent implements OnInit {
   selectedCountry: string = '';
   id: string | undefined;
   schoolForm: FormGroup;
+  Editor = ClassicEditor;
+  public editorConfig = {
+    toolbar: [
+      'bold',
+      'italic',
+      'link',
+      'undo',
+      'redo',
+      'bulletedList',
+      'numberedList',
+      'blockQuote',
+      'insertTable',
+      'alignment',
+      'fontSize',
+      'fontFamily',
+    ],
+  };
   constructor(
     private countryService: CountryService,
     private route: ActivatedRoute,
     private schoolService: SchoolService,
     private alert: SweetAlertService,
     private fb: FormBuilder,
-    private authService :AuthService
+    private authService: AuthService
   ) {
     this.schoolForm = this.fb.group({
       name: ['', Validators.required],
@@ -47,6 +66,11 @@ export class SchoolEditComponent implements OnInit {
       provider: [''],
       countryCode: ['', Validators.required],
       rankValue: [0],
+      url:[''],
+      students : 0,
+      fieldOfStudy:0,
+      type: [''],
+      topReason:['']
     });
   }
 
@@ -68,6 +92,11 @@ export class SchoolEditComponent implements OnInit {
                 provider: this.schoolResponse.provider,
                 countryCode: this.schoolResponse.countryCode,
                 rankValue: this.schoolResponse.rankValue,
+                url: this.schoolResponse.url,
+                students: this.schoolResponse.students,
+                fieldOfStudy: this.schoolResponse.fieldOfStudy,
+                type: this.schoolResponse.type,
+                topReason: this.schoolResponse.topReason
               });
             },
           });
@@ -85,6 +114,11 @@ export class SchoolEditComponent implements OnInit {
         countryCode: this.schoolForm.get('countryCode')?.value,
         rankValue: this.schoolForm.get('rankValue')?.value,
         logo: this.schoolForm.get('logo')?.value,
+        url: this.schoolForm.get('url')?.value,
+        students: this.schoolForm.get('students')?.value,
+        fieldOfStudy: this.schoolForm.get('fieldOfStudy')?.value,
+        type: this.schoolForm.get('type')?.value,
+        topReason: this.schoolForm.get('topReason')?.value,
       };
       if (!check) {
         this.schoolService.createSchool(data).subscribe({
